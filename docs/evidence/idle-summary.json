@@ -1,0 +1,20 @@
+{
+  "durationSeconds": 900.087,
+  "cpuNS": 1633208.3333333333,
+  "averageCPUPercent": 0.00018145005242085858,
+  "platformIdleWakeups": 0,
+  "interruptWakeups": 6,
+  "initialFootprintBytes": 6226496,
+  "finalFootprintBytes": 6292032,
+  "maxFootprintBytes": 6292032,
+  "diskWrittenBytes": 0,
+  "logicalWrittenBytes": 0,
+  "timebase": {
+    "numer": 125,
+    "denom": 3
+  },
+  "condition": "AC power, normal power mode, Chrome closed, screen-idle settings restored; no Instruments recording or status calls during acquisition",
+  "note": "CPU counters converted using mach_timebase_info after an independent process-CPU-clock calibration. Sampler runs outside the helper.",
+  "version": "0.1.0",
+  "binarySHA256": "58fc4e0e76b5f053693962f8255ecca8c37ac6a0219be7b708059f9875157657"
+}

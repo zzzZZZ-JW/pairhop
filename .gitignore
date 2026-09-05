@@ -1,0 +1,12 @@
+**/.build/
+outputs/
+work/
+script/
+.codex/
+.swiftpm/
+*.trace/
+*.dSYM/
+*.pem
+*.p12
+*.mobileprovision
+.DS_Store

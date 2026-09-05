@@ -1,0 +1,29 @@
+name: macOS checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Show toolchain
+        run: swift --version
+      - name: Test pairing rules and shell syntax
+        run: ./scripts/test.sh
+      - name: Test installer gates without installing
+        run: python3 scripts/test-installer.py
+      - name: Build and verify local signature
+        run: ./scripts/build.sh
+      - name: Check CLI without installing a background service
+        run: |
+          BIN="$(swift build -c release --show-bin-path)/pairing-helper"
+          test "$("$BIN" version)" = "0.1.1"
+          codesign --verify --strict -R '=identifier "com.zhangjiawei.chrome-icloud-pairing"' "$BIN"
+          "$BIN" help
+          if "$BIN" invalid-command; then exit 1; fi
