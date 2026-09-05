@@ -10,14 +10,14 @@ A native Swift executable plus a per-user LaunchAgent: no `.app`, menu bar, Dock
 
 ## Install and use
 
-This branch contains the **0.1.2-dev** restart stability fix. The published v0.1.1 installer below does **not** include it yet; no new GitHub Release has been published. See the [stability investigation and manual validation](stability-fix.md).
+Stable **v0.1.2** fixes missed pairing triggers after Chrome restarts and window reopening. See the [stability investigation and manual validation](stability-fix.md).
 
-Preview v0.1.1 provides an Apple Silicon binary for macOS 14+ (the API deployment target). Actual device validation is limited to macOS 27 Beta, Chrome 152 and Apple's extension 3.3.0. It is Developer ID signed with Hardened Runtime, **not notarized**.
+Stable v0.1.2 provides an Apple Silicon binary for macOS 14+ (the API deployment target). Actual device validation is limited to macOS 27 Beta, Chrome 152 and Apple's extension 3.3.0. It is Developer ID signed with Hardened Runtime, **not notarized**.
 
 Install Apple's [official extension](https://chromewebstore.google.com/detail/icloud-passwords/pejdijmoenmkgeppbflobdenhhabjlaj), then run in a native arm64 terminal, without sudo:
 
 ```sh
-curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/zzzZZZ-JW/pairhop/v0.1.1/install.sh | /bin/bash
+curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/zzzZZZ-JW/pairhop/v0.1.2/install.sh | /bin/bash
 export PATH="$HOME/.local/bin:$PATH"
 pairhop status
 ```

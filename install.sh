@@ -3,8 +3,8 @@
 set -euo pipefail
 
 main() {
-    local version='0.1.1'
-    local expected_sha256='f93c9c2bd0660c45af0b14de3a2f1001f17d5648d57a76cec9d1a239d032334b'
+    local version='0.1.2'
+    local expected_sha256='0fdbb14319ef8b6991d80ce2336a93a1df7e45f0c09f90d1a0514d6347c0cbbb'
     local asset="pairhop-v${version}-macos-arm64"
     local url="https://github.com/zzzZZZ-JW/pairhop/releases/download/v${version}/${asset}"
     local signature='=anchor apple generic and identifier "com.zhangjiawei.chrome-icloud-pairing" and certificate leaf[subject.OU] = "R9PVW8HZY2"'

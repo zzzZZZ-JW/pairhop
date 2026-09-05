@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased — restart stability
+## 0.1.2 — 2026-09-05
+
+First stable release, fixing repeated pairing triggers.
 
 - Initialize native accessibility for every Chrome process through its application role, without relying on an external UI inspector.
 - Reconcile Apple's native messaging helper whenever the official six-digit form appears, including when all Chrome windows were closed without quitting Chrome.
