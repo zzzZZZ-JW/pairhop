@@ -1,0 +1,9 @@
+{
+  "version": "0.1.2",
+  "binary_sha256": "0fdbb14319ef8b6991d80ce2336a93a1df7e45f0c09f90d1a0514d6347c0cbbb",
+  "binary_size": 442544,
+  "architecture": "arm64",
+  "developer_id_signature_verified": true,
+  "notarized": false,
+  "pairing_engine_unchanged_from_user_tested_dev_build": true
+}

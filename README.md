@@ -8,7 +8,7 @@
 
 Swift 原生后台程序，由用户级 LaunchAgent 管理。**没有 `.app`、菜单栏或 Dock 图标；安装和日常管理全部通过命令行。** 登录后待命，终端可以关闭。首次辅助功能授权仍需你在 macOS 系统设置中确认。
 
-> **v0.1.1 预览版**：提供 Apple Silicon 二进制，已用 Developer ID 签名，尚未公证。当前实机验证组合为 macOS 27.0 Beta、Chrome 152、官方扩展 3.3.0。项目最低编译目标为 macOS 14，其他系统、语言及输入法组合尚未完成兼容验收。
+> **v0.1.2 正式版**：提供 Apple Silicon 二进制，已用 Developer ID 签名，尚未公证。当前实机验证组合为 macOS 27.0 Beta、Chrome 152、官方扩展 3.3.0。项目最低编译目标为 macOS 14，其他系统、语言及输入法组合尚未完成兼容验收。
 
 ## 安装
 
@@ -17,12 +17,12 @@ Swift 原生后台程序，由用户级 LaunchAgent 管理。**没有 `.app`、�
 在 **Apple Silicon Mac 的原生终端**执行，无需 `sudo`、Homebrew 或 Xcode：
 
 ```sh
-curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/zzzZZZ-JW/pairhop/v0.1.1/install.sh | /bin/bash
+curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/zzzZZZ-JW/pairhop/v0.1.2/install.sh | /bin/bash
 export PATH="$HOME/.local/bin:$PATH"
 pairhop status
 ```
 
-安装脚本固定下载 v0.1.1，并在执行前校验 SHA-256、Apple 签名链、签名团队和程序标识。也可以先下载并阅读 [install.sh](install.sh) 再执行。
+安装脚本固定下载 v0.1.2，并在执行前校验 SHA-256、Apple 签名链、签名团队和程序标识。也可以先下载并阅读 [install.sh](install.sh) 再执行。
 
 首次使用，打开「系统设置 → 隐私与安全性 → 辅助功能」，允许 **pairing-helper**。列表中没有它时，点「＋」，按 `⌘⇧G` 输入下面的目录，选择 `pairing-helper`：
 
@@ -58,6 +58,8 @@ pairhop status
 - **轻量管理**：没有防休眠断言。异常退出由 launchd 限速恢复；运行记录仅保留最近 200 次简短结果。
 
 ## 实测，而不是承诺
+
+> 后续稳定性排查发现，旧测试使用的界面工具会影响 Chrome 辅助功能初始化，掩盖正常使用时的漏触发。下面的数据只说明工具参与时的性能，不能证明正常重启后的稳定成功率。另见 [稳定性排查与修复](docs/stability-fix.md)。
 
 同一台 Mac 的 **v0.1.0 配对引擎基线**完成 30 次独立 Chrome 退出、重启和真实配对，30/30 确认连接：
 

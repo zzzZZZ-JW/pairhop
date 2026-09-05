@@ -39,10 +39,15 @@ extension PairingService {
               state.accessibilityAuthorized, state.inputAuthorized else { return }
         let now = monotonic()
         let targets = processes("chrome").flatMap(Discovery.popups)
-        // The native messaging helper may become visible to NSWorkspace only
-        // after Chrome's launch notification. Discover it on the actual PIN UI.
-        if targets.contains(where: { $0.fields.count == 6 }), processes("helper").isEmpty { refreshProcesses() }
+        // Native messaging can replace Apple's helper while Chrome keeps the
+        // same PID (for example, after its last window closes). NSWorkspace does
+        // not reliably announce this helper's lifecycle. A nonempty cache does
+        // not prove that it still points to the process displaying the new PIN.
+        // Reconcile on the official form, including each bounded readiness retry.
+        if targets.contains(where: { $0.fields.count == 6 }) { refreshProcesses() }
         let sources = processes("helper").flatMap(Discovery.pinWindows)
+        state.sourceWindows = sources.count; state.targetWindows = targets.count
+        state.targetFieldCounts = targets.map { $0.fields.count }
         state.lastInspection = "sources=\(sources.count) targets=\(targets.count) helperProcesses=\(processes("helper").count)"
         handledWindows.removeAll { handled in !sources.contains { AX.same($0.window,handled) } }
         // AX can announce the popup before Apple's six-digit text has appeared.

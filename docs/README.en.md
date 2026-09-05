@@ -10,12 +10,14 @@ A native Swift executable plus a per-user LaunchAgent: no `.app`, menu bar, Dock
 
 ## Install and use
 
-Preview v0.1.1 provides an Apple Silicon binary for macOS 14+ (the API deployment target). Actual device validation is limited to macOS 27 Beta, Chrome 152 and Apple's extension 3.3.0. It is Developer ID signed with Hardened Runtime, **not notarized**.
+Stable **v0.1.2** fixes missed pairing triggers after Chrome restarts and window reopening. See the [stability investigation and manual validation](stability-fix.md).
+
+Stable v0.1.2 provides an Apple Silicon binary for macOS 14+ (the API deployment target). Actual device validation is limited to macOS 27 Beta, Chrome 152 and Apple's extension 3.3.0. It is Developer ID signed with Hardened Runtime, **not notarized**.
 
 Install Apple's [official extension](https://chromewebstore.google.com/detail/icloud-passwords/pejdijmoenmkgeppbflobdenhhabjlaj), then run in a native arm64 terminal, without sudo:
 
 ```sh
-curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/zzzZZZ-JW/pairhop/v0.1.1/install.sh | /bin/bash
+curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/zzzZZZ-JW/pairhop/v0.1.2/install.sh | /bin/bash
 export PATH="$HOME/.local/bin:$PATH"
 pairhop status
 ```
@@ -40,6 +42,8 @@ Then run `pairhop stop && pairhop start && pairhop status`. Accessibility and in
 Normal operation requires no terminal. After an aborted attempt, close the current pairing dialog and trigger a new one. PairHop never clears existing manual input or forces application focus.
 
 ## Evidence and limits
+
+The original 30-cycle test used a UI automation tool that accessed Chrome's accessibility tree. Later user testing exposed missed triggers that those accesses masked. These samples measure performance with the tool present; they do not establish unattended restart reliability. Closing every window while leaving Chrome running is also a separate lifecycle scenario.
 
 The v0.1.0 engine baseline completed 30/30 independent Chrome restart/pairing cycles on one Mac. Ready-to-input P95 was 155.9 ms; observed-request-to-confirmation P95 was 646.1 ms. The 15-minute AC idle run with Chrome closed averaged approximately 0.000181% of one logical CPU and about 6 MiB physical footprint. These are bounded observations, not universal guarantees or whole-device watt measurements.
 

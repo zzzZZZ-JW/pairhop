@@ -33,7 +33,7 @@ pairhop start
 pairhop status
 ```
 
-若系统仍显示未授权，检查列表中的文件是否来自上面的正式安装路径。CLI 状态第一行是当前 launchd 状态；后面的 JSON 是带 `updatedAt` 时间戳的快照，服务停止时可能是旧快照。
+若系统仍显示未授权，检查列表中的文件是否来自上面的正式安装路径。CLI 状态第一行是当前 launchd 状态；后面的 JSON 是带 `updatedAt` 时间戳的快照。`status` 只读，不刷新监听或遍历 Chrome；快照反映最近一次状态记录，空闲时不会持续更新。
 
 ## 不输入或输入中止
 
@@ -46,6 +46,8 @@ pairhop status
 
 Chrome 关闭时 `chromeProcesses: 0` 正常。首版只匹配已验证的简体中文和英语连接文案；其他语言可能出现已输入但无法确认的状态。
 
+`observedProcessIDs` 列出当前监听的 Chrome / Apple 帮助程序进程编号；`pendingRegistrations` 和 `registrationFailures` 区分暂时注册失败与系统不支持的通知。启动阶段会有限重试；若持续显示 `waiting_for_accessibility`，先保留 `status` 输出，再运行 `pairhop diagnose` 主动刷新并检查。
+
 ## 诊断模式
 
 ```sh
@@ -55,7 +57,7 @@ pairhop diagnose
 pairhop install
 ```
 
-诊断模式不发送数字。`status` / `diagnose` 会发起一次显式检查并更新状态，不是后台周期扫描。
+诊断模式不发送数字。`diagnose` 会主动刷新监听并检查界面，自动模式下也可能让当前待处理请求继续；`status` 只读现有快照，不改变监听状态。这两种命令都不是后台周期扫描。
 
 ## 卸载
 

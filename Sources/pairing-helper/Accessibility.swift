@@ -62,6 +62,10 @@ struct TrustedProcess {
               let code, let req, SecCodeCheckValidity(code, [], req) == errSecSuccess else { return nil }
         let ax = AXUIElementCreateApplication(app.processIdentifier)
         AXUIElementSetMessagingTimeout(ax, 0.15)
+        // Chrome enables native accessibility when an assistive client reads its
+        // application role. Registering notifications alone does not do this.
+        // Repeat for every new process; never depend on an inspector/VoiceOver.
+        guard AX.role(ax) == kAXApplicationRole else { return nil }
         return TrustedProcess(app: app, ax: ax, kind: kind)
     }
 }
