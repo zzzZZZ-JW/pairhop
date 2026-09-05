@@ -1,0 +1,38 @@
+{
+  "build_version": "0.1.2-dev",
+  "sha256": "752dee30b975f8150dc3679a071cac88df10c943eed578dc310c9e9f5a6502c5",
+  "ui_tool_read_chrome_during_validation": false,
+  "passive_file_read_only": true,
+  "user_confirmed_window_only_reopen_successes": 2,
+  "recorded_confirmed_attempts": 4,
+  "attempts": [
+    {
+      "outcome": "confirmed",
+      "enteredDigits": 6,
+      "readyToInputMS": 129.63850000051025,
+      "observedToInputMS": 168.1220000009489,
+      "observedToConfirmedMS": 424.27404200134333
+    },
+    {
+      "outcome": "confirmed",
+      "enteredDigits": 6,
+      "readyToInputMS": 127.11037500048405,
+      "observedToInputMS": 189.70145899947966,
+      "observedToConfirmedMS": 416.3639170001261
+    },
+    {
+      "outcome": "confirmed",
+      "enteredDigits": 6,
+      "readyToInputMS": 116.046125000139,
+      "observedToInputMS": 170.54629099948215,
+      "observedToConfirmedMS": 401.415750000524
+    },
+    {
+      "outcome": "confirmed",
+      "enteredDigits": 6,
+      "readyToInputMS": 127.31562500084692,
+      "observedToInputMS": 181.70099999952072,
+      "observedToConfirmedMS": 364.37945799843874
+    }
+  ]
+}

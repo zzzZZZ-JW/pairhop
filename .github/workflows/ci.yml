@@ -23,7 +23,7 @@ jobs:
       - name: Check CLI without installing a background service
         run: |
           BIN="$(swift build -c release --show-bin-path)/pairing-helper"
-          test "$("$BIN" version)" = "0.1.1"
+          test "$("$BIN" version)" = "0.1.2-dev"
           codesign --verify --strict -R '=identifier "com.zhangjiawei.chrome-icloud-pairing"' "$BIN"
           "$BIN" help
           if "$BIN" invalid-command; then exit 1; fi

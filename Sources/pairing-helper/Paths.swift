@@ -5,7 +5,7 @@ import PairingCore
 
 enum Config {
     static let label = "com.zhangjiawei.chrome-icloud-pairing"
-    static let version = "0.1.1"
+    static let version = "0.1.2-dev"
     static let root = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Application Support/ChromeICloudPairingHelper")
     static let executable = root.appendingPathComponent("pairing-helper")
     static let commandLink = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".local/bin/pairhop")

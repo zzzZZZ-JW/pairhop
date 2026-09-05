@@ -57,7 +57,9 @@ do {
     case "stop": try stop(); print("Stopped; login startup disabled.")
     case "status", "diagnose":
         let pid = launchPID()
-        if let pid {
+        // status must not repair listeners and conceal a trigger failure.
+        // Explicit diagnose remains the active refresh/inspection command.
+        if args.first == "diagnose", let pid {
             let before = (try? FileManager.default.attributesOfItem(atPath: Config.state.path)[.modificationDate]) as? Date
             kill(pid,SIGUSR1)
             // Only this user-invoked CLI waits. The daemon has no polling timer.

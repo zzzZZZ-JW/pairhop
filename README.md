@@ -12,6 +12,8 @@ Swift 原生后台程序，由用户级 LaunchAgent 管理。**没有 `.app`、�
 
 ## 安装
 
+当前修复分支的源码版本为 **0.1.2-dev**，包含 Chrome 重启和关闭全部窗口后的触发修复；下方公开安装命令仍固定到已发布的 **0.1.1**，不含此修复。修复版尚未发布 GitHub Release，可使用文末的源码构建流程。
+
 先安装 Chrome 中 Apple 发布的 [iCloud 密码扩展](https://chromewebstore.google.com/detail/icloud-passwords/pejdijmoenmkgeppbflobdenhhabjlaj)，并在这台 Mac 上配置好 iCloud 密码。
 
 在 **Apple Silicon Mac 的原生终端**执行，无需 `sudo`、Homebrew 或 Xcode：
@@ -58,6 +60,8 @@ pairhop status
 - **轻量管理**：没有防休眠断言。异常退出由 launchd 限速恢复；运行记录仅保留最近 200 次简短结果。
 
 ## 实测，而不是承诺
+
+> 后续稳定性排查发现，旧测试使用的界面工具会影响 Chrome 辅助功能初始化，掩盖正常使用时的漏触发。下面的数据只说明工具参与时的性能，不能证明正常重启后的稳定成功率。另见 [稳定性排查与修复](docs/stability-fix.md)。
 
 同一台 Mac 的 **v0.1.0 配对引擎基线**完成 30 次独立 Chrome 退出、重启和真实配对，30/30 确认连接：
 
